@@ -1,8 +1,5 @@
 import BTree.BTree;
 import BTree.DrawBTree;
-import DoubleChain.DoubleChain;
-
-import java.util.Iterator;
 
 public class Main {
 
@@ -11,6 +8,7 @@ public class Main {
         System.out.print("Tree is empty: ");
         System.out.println(b.isEmpty());
 
+        // construct new b-tree
         b.insert(10, 0.0);
         b.insert(20, 0.0);
         b.insert(25, 0.0);
@@ -28,8 +26,11 @@ public class Main {
         b.insert(82, 0.0);
         b.insert(44, 0.0);
 
+        // test for replace function
         b.replace(10, 1.0);
         b.replace(11, 1.0);
+
+        // test for delete function
         b.delete(82);
 
         new DrawBTree(b);
