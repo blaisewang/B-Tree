@@ -337,13 +337,6 @@ public class BTree<K extends Comparable<K>, E> implements Tree, Serializable {
     }
 
     /**
-     * @param node , the node to be deleted with the key
-     */
-    private void deletePair(BTNode<Pair<K, E>> node) {
-        node.removeKey(index);
-    }
-
-    /**
      * @param node , the node
      * @return the number of the node's father child index which
      * matches the node
@@ -424,7 +417,6 @@ public class BTree<K extends Comparable<K>, E> implements Tree, Serializable {
                     currentNode.addChild(i, node.getChild(i));
                     currentNode.getChild(i).setFather(currentNode);
                 }
-
             } else {
                 currentNode.addKey(currentNode.getSize(), fatherNode.getKey(nodeIndex - 1));
                 fatherNode.removeKey(nodeIndex - 1);
@@ -446,7 +438,6 @@ public class BTree<K extends Comparable<K>, E> implements Tree, Serializable {
             }
             return fatherNode;
         }
-
     }
 
     /**
@@ -539,7 +530,11 @@ public class BTree<K extends Comparable<K>, E> implements Tree, Serializable {
             }
 
             if (!node.equals(nullBTNode)) {
-                deletePair(node);
+                for (int i = 0; i < node.getSize(); i++) {
+                    if (node.getKey(i).first == key) {
+                        node.removeKey(i);
+                    }
+                }
                 treeSize--;
             }
         }
