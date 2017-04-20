@@ -95,10 +95,11 @@ public class DrawBTree extends JFrame {
             double element = Double.parseDouble(elementText.getText());
             keyText.setText("");
             elementText.setText("0.0");
-            bTree.insert(key, element);
             if (index < bTreeLinkedList.size() - 1) {
                 deleteList();
+                bTreeLinkedList.add(CloneUtils.clone(bTree));
             }
+            bTree.insert(key, element);
             bTreeLinkedList.add(CloneUtils.clone(bTree));
             index = bTreeLinkedList.size() - 1;
             checkValid();
@@ -113,10 +114,11 @@ public class DrawBTree extends JFrame {
             key = Integer.parseInt(keyText.getText());
             keyText.setText("");
             elementText.setText("0.0");
-            bTree.delete(key);
             if (index < bTreeLinkedList.size() - 1) {
                 deleteList();
+                bTreeLinkedList.add(CloneUtils.clone(bTree));
             }
+            bTree.delete(key);
             bTreeLinkedList.add(CloneUtils.clone(bTree));
             index = bTreeLinkedList.size() - 1;
             checkValid();
