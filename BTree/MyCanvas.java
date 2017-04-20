@@ -8,27 +8,32 @@ import java.util.LinkedList;
  * DataStructure
  * Created by Blaise Wang on 16/6/11.
  */
-class MyCanvas<K extends Comparable<K>, E> extends Canvas {
+class MyCanvas extends Canvas {
 
-    private BTree<K, E> tree;
+    private BTree<Integer, Double> bTree;
     private int width, height;
     private int fontSize = 12;
     private int rectangleWidth = 45;
 
-    MyCanvas(int width, int height, BTree<K, E> tree) {
+    MyCanvas(int width, int height, BTree<Integer, Double> bTree) {
         setBackground(Color.white);
         this.width = width;
         this.height = height;
         setSize(width, height);
-        this.tree = tree;
+        this.bTree = bTree;
     }
 
     public void paint(Graphics g) {
         g.setColor(Color.black);
-        g.setFont(new Font("黑体", Font.BOLD, 16));
-        g.drawString("Size of tree node: " + tree.getTreeSize(), 50, 50);
-        g.drawString("Height of tree: " + tree.getHeight(), 50, 70);
+        g.setFont(new Font("SimHei", Font.BOLD, 16));
+        g.drawString("Size of bTree node: " + bTree.getTreeSize(), 50, 50);
+        g.drawString("Height of bTree: " + bTree.getHeight(), 50, 70);
         DrawBTree(g);
+    }
+
+    void updateCanvas(BTree<Integer, Double> bTree) {
+        this.bTree = bTree;
+        this.repaint();
     }
 
     private void DrawNode(Graphics g, String s, int x, int y) {
@@ -41,15 +46,15 @@ class MyCanvas<K extends Comparable<K>, E> extends Canvas {
     }
 
     private void DrawBTree(Graphics g) {
-        BTNode<Pair<K, E>> root = tree.getRoot();
+        BTNode<Pair<Integer, Double>> root = bTree.getRoot();
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(1.5f));
 
         if (root != null) {
             int lastSize = 0, keySize = 0;
 
-            LinkedList<BTNode<Pair<K, E>>> queue = new LinkedList<BTNode<Pair<K, E>>>();
-            LinkedList<BTNode<Pair<K, E>>> treeNodes = new LinkedList<BTNode<Pair<K, E>>>();
+            LinkedList<BTNode<Pair<Integer, Double>>> queue = new LinkedList<BTNode<Pair<Integer, Double>>>();
+            LinkedList<BTNode<Pair<Integer, Double>>> treeNodes = new LinkedList<BTNode<Pair<Integer, Double>>>();
             LinkedList<Integer> nodeSize = new LinkedList<>();
             LinkedList<Integer> lastNodeSize = new LinkedList<>();
             LinkedList<Integer> tempLastSize = new LinkedList<>();
@@ -57,7 +62,7 @@ class MyCanvas<K extends Comparable<K>, E> extends Canvas {
             LinkedList<Integer> tempLastX = new LinkedList<>();
 
             queue.push(root);
-            BTNode<Pair<K, E>> currentNode;
+            BTNode<Pair<Integer, Double>> currentNode;
             while ((currentNode = queue.poll()) != null) {
                 treeNodes.add(currentNode);
                 if (currentNode.isLastInternalNode()) {
@@ -75,7 +80,7 @@ class MyCanvas<K extends Comparable<K>, E> extends Canvas {
             int blockSpace = 90;
             int treeNodeSize = treeNodes.size();
             int x = (width - (keySize * rectangleWidth + (lastSize - 1) * 20)) / 2;
-            int y = (height + ((tree.getHeight() - 3) * blockSpace)) / 2;
+            int y = (height + ((bTree.getHeight() - 3) * blockSpace)) / 2;
 
             for (int i = 0; i < lastSize; i++) {
                 int temp = nodeSize.poll();
@@ -84,7 +89,7 @@ class MyCanvas<K extends Comparable<K>, E> extends Canvas {
             }
 
             for (int i = treeNodeSize - lastSize; i < treeNodes.size(); i++) {
-                BTNode<Pair<K, E>> node = treeNodes.get(i);
+                BTNode<Pair<Integer, Double>> node = treeNodes.get(i);
                 if (node.isLastInternalNode()) {
                     for (int j = 0; j < node.getSize(); j++) {
                         String string = node.getKey(j).toString();
@@ -127,7 +132,7 @@ class MyCanvas<K extends Comparable<K>, E> extends Canvas {
                         if (nodeX.get(j) - nodeX.get(j - 1) == rectangleWidth)
                             nodeX.remove(j);
                     }
-                    BTNode<Pair<K, E>> node = treeNodes.get(treeNodeSize - lastSize - m);
+                    BTNode<Pair<Integer, Double>> node = treeNodes.get(treeNodeSize - lastSize - m);
                     int size = node.getSize();
                     int halfSize = (size + 1) / 2;
                     if ((size + 1) % 2 == 0) {
