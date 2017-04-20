@@ -1,5 +1,6 @@
 package BTree;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
@@ -7,7 +8,8 @@ import java.util.LinkedList;
  * Created by Blaise Wang on 16/6/5.
  */
 
-public class BTree<K extends Comparable<K>, E> implements Tree {
+public class BTree<K extends Comparable<K>, E> implements Tree, Serializable {
+    private static final long serialVersionUID = 1267293988171991494L;
     private BTNode<Pair<K, E>> root = null;
     private int order, index, treeSize;
     private final int halfNumber;
@@ -255,9 +257,6 @@ public class BTree<K extends Comparable<K>, E> implements Tree {
      */
     public void insert(K key, E element) {
         Pair<K, E> pair = new Pair<K, E>(key, element);
-        /**
-         * if tree is empty, construct a root node
-         */
         if (isEmpty()) {
             root = new BTNode<Pair<K, E>>(order);
             root.addKey(0, pair);
@@ -270,17 +269,11 @@ public class BTree<K extends Comparable<K>, E> implements Tree {
 
         BTNode<Pair<K, E>> currentNode = root;
 
-        /**
-         *  replace the duplicate element with new pair
-         */
         if (get(pair.first) != null) {
             replace(key, element);
             return;
         }
 
-        /**
-         *  move to the last internal node
-         */
         while (!currentNode.isLastInternalNode()) {
             int i = 0;
             while (i < currentNode.getSize()) {
@@ -297,10 +290,6 @@ public class BTree<K extends Comparable<K>, E> implements Tree {
                 currentNode = currentNode.getChild(currentNode.getSize());
         }
 
-        /**
-         *  insert into last internal node
-         *  in ascending order
-         */
         if (!currentNode.isFull()) {
             int i = 0;
             while (i < currentNode.getSize()) {
@@ -389,9 +378,6 @@ public class BTree<K extends Comparable<K>, E> implements Tree {
             flag = false;
         }
 
-        /**
-         *  use brother node's extra key to fill the delete node
-         */
         int currentSize = currentNode.getSize();
         if (currentSize > halfNumber) {
             if (flag) {
@@ -421,10 +407,6 @@ public class BTree<K extends Comparable<K>, E> implements Tree {
             }
             return node;
         } else {
-            /**
-             *  merge with brother node and father node's key which
-             *  between node and brother node's key value
-             */
             if (flag) {
                 currentNode.addKey(0, fatherNode.getKey(0));
                 fatherNode.removeKey(0);
@@ -501,17 +483,11 @@ public class BTree<K extends Comparable<K>, E> implements Tree {
      * @param key , the key to be deleted
      */
     public void delete(K key) {
-        /**
-         * if cannot find the key or the tree if empty
-         */
         BTNode<Pair<K, E>> node = getNode(key);
         BTNode<Pair<K, E>> deleteNode = null;
         if (node.equals(nullBTNode))
             return;
 
-        /**
-         * if there is only one node in the tree
-         */
         if (node.equals(root) && node.getSize() == 1 && node.isLastInternalNode()) {
             root = null;
             treeSize--;

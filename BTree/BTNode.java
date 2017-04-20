@@ -1,5 +1,6 @@
 package BTree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,9 @@ import java.util.ArrayList;
  * Created by Blaise Wang on 16/6/5.
  */
 
-class BTNode<E extends Comparable<E>> {
+class BTNode<E extends Comparable<E>> implements Serializable {
+    private static final long serialVersionUID = 2631590509760908280L;
+
     private int fullNumber;
     private BTNode<E> father;
     private ArrayList<BTNode<E>> children = new ArrayList<BTNode<E>>();
