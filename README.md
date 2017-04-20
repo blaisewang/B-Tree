@@ -5,4 +5,6 @@ Data structure B-tree with graphical user interface
 
 This is my data structure course design work in summer, 2016.
 
+### New Feature
+
 Now you can use `previous` or `next` button to view history
