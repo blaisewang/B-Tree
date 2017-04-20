@@ -1,9 +1,11 @@
 # B-tree
 Data structure B-tree with graphical user interface
 
-![](http://wx4.sinaimg.cn/large/9cbe429fly1fetdv85goaj21kw15n77v.jpg)  
+My data structure course design work in summer, 2016.
 
-This is my data structure course design work in summer, 2016.
+### Preview
+
+![](http://wx4.sinaimg.cn/large/9cbe429fly1fetdv85goaj21kw15n77v.jpg)  
 
 ### New Feature
 
