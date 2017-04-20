@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         BTree<Integer, Double> bTree = new BTree<Integer, Double>(3);
-        System.out.print("Tree is empty: ");
+        System.out.print("Is B-tree empty: ");
         System.out.println(bTree.isEmpty());
 
         // test function insert
@@ -33,17 +33,17 @@ public class Main {
         // test function delete
         bTree.delete(82);
 
-        // construct new b-tree
+        // construct new B-tree
         new DrawBTree(bTree);
 
         System.out.print("Pair for key = 10 is: (");
         System.out.println(bTree.get(10) + ")");
-        System.out.print("Tree size is: ");
+        System.out.print("B-tree size: ");
         System.out.println(bTree.getTreeSize());
-        System.out.print("Height of tree: ");
+        System.out.print("Height of B-tree: ");
         System.out.println(bTree.getHeight());
 
-        System.out.println("Tree in level order is: ");
+        System.out.println("B-tree in level order: ");
         System.out.println(bTree);
     }
 }

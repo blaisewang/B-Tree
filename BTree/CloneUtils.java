@@ -8,21 +8,21 @@ import java.io.*;
  */
 class CloneUtils {
     @SuppressWarnings("unchecked")
-    static <T extends Serializable> T clone(T obj) {
-        T cloneObj = null;
+    static <T extends Serializable> T clone(T object) {
+        T cloneObject = null;
         try {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            ObjectOutputStream obs = new ObjectOutputStream(out);
-            obs.writeObject(obj);
-            obs.close();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            objectOutputStream.writeObject(object);
+            objectOutputStream.close();
 
-            ByteArrayInputStream ios = new ByteArrayInputStream(out.toByteArray());
-            ObjectInputStream ois = new ObjectInputStream(ios);
-            cloneObj = (T) ois.readObject();
-            ois.close();
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+            cloneObject = (T) objectInputStream.readObject();
+            objectInputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return cloneObj;
+        return cloneObject;
     }
 }
