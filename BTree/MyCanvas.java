@@ -26,8 +26,8 @@ class MyCanvas extends Canvas {
     public void paint(Graphics g) {
         g.setColor(Color.black);
         g.setFont(new Font("SimHei", Font.BOLD, 16));
-        g.drawString("Size of bTree node: " + bTree.getTreeSize(), 50, 50);
-        g.drawString("Height of bTree: " + bTree.getHeight(), 50, 70);
+        g.drawString("Size : " + bTree.getTreeSize(), 50, 50);
+        g.drawString("Height : " + bTree.getHeight(), 50, 70);
         DrawBTree(g);
     }
 
@@ -39,7 +39,7 @@ class MyCanvas extends Canvas {
     private void DrawNode(Graphics g, String s, int x, int y) {
         String firstString = s.substring(1, s.length() / 2);
         String secondString = s.substring(s.length() / 2 + 1, s.length() - 1);
-        g.setFont(new Font("黑体", Font.BOLD, fontSize));
+        g.setFont(new Font("SimHei", Font.BOLD, fontSize));
         g.drawString(firstString, x + 12, y + 15);
         g.drawString(secondString, x + 10, y + 30);
         g.drawRect(x, y, rectangleWidth, 3 * fontSize);
@@ -47,8 +47,14 @@ class MyCanvas extends Canvas {
 
     private void DrawBTree(Graphics g) {
         BTNode<Pair<Integer, Double>> root = bTree.getRoot();
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(1.5f));
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setStroke(new BasicStroke(1.5f));
+        g2d.setRenderingHint(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(
+                RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         if (root != null) {
             int lastSize = 0, keySize = 0;
