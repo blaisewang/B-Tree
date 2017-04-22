@@ -9,7 +9,7 @@ public class Main {
         System.out.println(bTree.isEmpty());
 
         // test function insert
-        bTree.insert(10, 1.0);
+        bTree.insert(10, 0.0);
         bTree.insert(20, 0.0);
         bTree.insert(25, 0.0);
         bTree.insert(30, 0.0);
@@ -27,7 +27,7 @@ public class Main {
         bTree.insert(44, 0.0);
 
         // test function replace
-        bTree.replace(10, 0.0);
+        bTree.replace(10, 01.0);
         bTree.replace(11, 0.0);
 
         // test function delete
