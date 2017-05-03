@@ -9,7 +9,6 @@ import java.util.LinkedList;
  * Created by Blaise Wang on 16/6/11.
  */
 class MyCanvas extends Canvas {
-
     private BTree<Integer, Double> bTree;
     private int width, height;
     private int fontSize = 12;

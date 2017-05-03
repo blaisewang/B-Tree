@@ -2,7 +2,6 @@ import BTree.BTree;
 import BTree.DrawBTree;
 
 public class Main {
-
     public static void main(String[] args) {
         BTree<Integer, Double> bTree = new BTree<Integer, Double>(3);
         System.out.print("Is B-tree empty: ");
@@ -27,7 +26,7 @@ public class Main {
         bTree.insert(44, 0.0);
 
         // test function replace
-        bTree.replace(10, 01.0);
+        bTree.replace(10, 1.0);
         bTree.replace(11, 0.0);
 
         // test function delete

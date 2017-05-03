@@ -15,6 +15,10 @@ public class BTree<K extends Comparable<K>, E> implements Tree, Serializable {
     private final int halfNumber;
     private final BTNode<Pair<K, E>> nullBTNode = new BTNode<Pair<K, E>>();
 
+    /**
+     *
+     * @param order of B-tree
+     */
     public BTree(int order) {
         if (order < 3) {
             try {
